@@ -111,9 +111,9 @@ export const Login = () => {
           <i className="w-full h-[1px] bg-[rgba(255,255,255,0.44)]"></i>
         </div>
 
-        <ul className="flex items-center gap-3 sm:gap-5 md:gap-8">
+        <ul className="flex items-center sx:gap-3 sm:gap-5 md:gap-8">
           <li className="inline-flex">
-            <a href="" className="inline-flex">
+            <a href="https://google.com" className="inline-flex">
               <img
                 src="src/assets/svgs/google.svg"
                 alt=""
@@ -122,7 +122,7 @@ export const Login = () => {
             </a>
           </li>
           <li className="inline-flex">
-            <a href="">
+            <a href="https://facebook.com">
               <img
                 src="src/assets/svgs/facebook.svg"
                 alt=""
@@ -131,7 +131,7 @@ export const Login = () => {
             </a>
           </li>
           <li className="inline-flex">
-            <a href="">
+            <a href="https://apple.com">
               <img
                 src="src/assets/svgs/apple.svg"
                 alt=""
