@@ -54,7 +54,7 @@ export const Sidebar = () => {
   const [navActive, setNavActive] = useState(1);
 
   return (
-    <aside className="shrink-0 w-[218px] 2xl:w-[300px] h-full bg-[#fff]">
+    <aside className="shrink-0 w-[218px] 2xl:w-[300px] h-screen bg-[#fff]">
       <div className="flex items-center justify-center gap-[15px] p-[50px_20px]">
         <Link to={"/"} className="drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
           <img src="src/assets/svgs/logo.svg" alt="" />
