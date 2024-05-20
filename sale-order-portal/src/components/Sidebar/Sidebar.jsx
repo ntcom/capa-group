@@ -1,26 +1,39 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 // import { Icons } from "../Icons/Icons";
+import logo from '../../assets/svgs/logo.svg';
+import infoIcon from '../../assets/svgs/info.svg';
+import infoIconActive from '../../assets/svgs/info-active.svg';
+import passwordIcon from '../../assets/svgs/password.svg';
+import passwordIconActive from '../../assets/svgs/password-active.svg';
+import walletIcon from '../../assets/svgs/wallet.svg';
+import walletIconActive from '../../assets/svgs/wallet-active.svg';
+import contractIcon from '../../assets/svgs/contract.svg';
+import contractIconActive from '../../assets/svgs/contract-active.svg';
+import getIcon from '../../assets/svgs/get.svg';
+import getIconActive from '../../assets/svgs/get-active.svg';
 
 const navs = [
   {
     id: 1,
     name: "Hồ sơ của tôi",
-    icon: "src/assets/svgs/info.svg",
-    iconActive: "src/assets/svgs/info-active.svg",
-    link: '/order/delivery-service'
+    icon: infoIcon,
+    iconActive: infoIconActive,
+    link: '/profile'
   },
   {
     id: 2,
     name: "Đổi mật khẩu",
-    icon: "src/assets/svgs/password.svg",
-    iconActive: "src/assets/svgs/password-active.svg",
+    icon: passwordIcon,
+    iconActive: passwordIconActive,
+    link: '/',
   },
   {
     id: 3,
     name: "Ví",
-    icon: "src/assets/svgs/wallet.svg",
-    iconActive: "src/assets/svgs/wallet-active.svg",
+    icon: walletIcon,
+    iconActive: walletIconActive,
+    link: '/',
     children: [
       {
         id: 11,
@@ -39,14 +52,16 @@ const navs = [
   {
     id: 4,
     name: "Đơn hàng ký gửi",
-    icon: "src/assets/svgs/contract.svg",
-    iconActive: "src/assets/svgs/contract-active.svg",
+    icon: contractIcon,
+    iconActive: contractIconActive,
+    link: '/order/delivery-service'
   },
   {
     id: 5,
     name: "Đơn hàng mua hộ",
-    icon: "src/assets/svgs/get.svg",
-    iconActive: "src/assets/svgs/get-active.svg",
+    icon: getIcon,
+    iconActive: getIconActive,
+    link: '/order/order-service'
   },
 ];
 
@@ -54,10 +69,10 @@ export const Sidebar = () => {
   const [navActive, setNavActive] = useState(1);
 
   return (
-    <aside className="shrink-0 w-[218px] 2xl:w-[300px] h-full bg-[#fff]">
+    <aside className="fixed top-0 left-0 bottom-0 shrink-0 w-[218px] 2xl:w-[268px] h-screen bg-[#fff]">
       <div className="flex items-center justify-center gap-[15px] p-[50px_20px]">
         <Link to={"/"} className="drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
-          <img src="src/assets/svgs/logo.svg" alt="" />
+          <img src={logo} alt="" />
         </Link>
         <Link to={"/"} className="text-[#4285F4] text-2xl font-semibold">
           Capa
@@ -68,7 +83,7 @@ export const Sidebar = () => {
         {navs.map((nav) => {
           return (
             <Link
-              to={"/"}
+              to={nav.link}
               className="block py-[15px] hover:bg-[linear-gradient(90deg,rgba(66,133,244,.2)_0%,rgba(66,133,244,0.00)_30.98%)]"
               style={{
                 background:
