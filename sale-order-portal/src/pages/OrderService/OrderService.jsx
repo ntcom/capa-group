@@ -1,8 +1,9 @@
+import { useState } from "react";
 import arrowDown from "../../assets/svgs/arrow-down.svg";
 import calendar from "../../assets/svgs/calendar.svg";
 import { Link } from "react-router-dom";
 import GroupFuncKeys from "../../components/GroupFuncKeys";
-import { useState } from "react";
+import search from "../../assets/svgs/search.svg";
 
 const dataTable = [
   {
@@ -165,7 +166,7 @@ export const OrderService = () => {
 
   return (
     <>
-      <h2 className="text-2xl text-[#030229] font-bold">Đơn hàng mua hộ</h2>
+      <h2 className="text-2xl text-[#4285F4] font-bold">Đơn hàng mua hộ</h2>
 
       <div className="w-full flex justify-between gap-4 mt-8">
         <GroupFuncKeys
@@ -176,6 +177,16 @@ export const OrderService = () => {
           soft={soft}
           setSoft={setSoft}
         />
+        <div className="shrink-0 relative inline-flex items-center">
+          <input
+            type="text"
+            className="shrink-0 w-[260px] h-10 p-[12px_35px_12px_16px] rounded-[10px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.10)] outline-none"
+            placeholder="Search"
+          />
+          <div className="shrink-0 w-3 h-3 absolute right-[23px]">
+            <img src={search} alt="" />
+          </div>
+        </div>
       </div>
 
       <table className="block xl:table w-full mt-6 overflow-x-scroll">
