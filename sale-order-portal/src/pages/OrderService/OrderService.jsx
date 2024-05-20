@@ -1,33 +1,29 @@
 import { useState } from "react";
-import search from "../../assets/svgs/search.svg";
-import plus from "../../assets/svgs/plus.svg";
 import arrowDown from "../../assets/svgs/arrow-down.svg";
 import calendar from "../../assets/svgs/calendar.svg";
 import { Link } from "react-router-dom";
-import DeliveryServiceModal from "../../components/Modal/DeliveryServiceModal/DeliveryServiceModal";
 import GroupFuncKeys from "../../components/GroupFuncKeys";
+import search from "../../assets/svgs/search.svg";
 
 const dataTable = [
   {
     stt: 1,
-    code: "S00924",
-    date: "15/05/2024",
-    time: "10:10:44",
-    tracking: "",
-    quantity: 0,
-    mass: 0,
-    totalPrice: 0,
+    code: "S00937",
+    date: "16/05/2024",
+    time: "11:09:56",
+    quantity: 1,
+    totalPrice: 10115000,
+    deposits: 5550000,
     status: "Sale",
   },
   {
     stt: 2,
-    code: "S00923",
+    code: "S00936",
     date: "15/05/2024",
-    time: "10:09:34",
-    tracking: "",
-    quantity: 0,
-    mass: 0,
-    totalPrice: 0,
+    time: "17:21:55",
+    quantity: 1,
+    totalPrice: 2150000,
+    deposits: 2150000,
     status: "Sale",
   },
   {
@@ -35,10 +31,9 @@ const dataTable = [
     code: "S00911",
     date: "14/05/2024",
     time: "17:29:22",
-    tracking: "",
-    quantity: 0,
-    mass: 0,
-    totalPrice: 0,
+    quantity: 1,
+    totalPrice: 10115000,
+    deposits: 5550000,
     status: "Sale",
   },
   {
@@ -46,10 +41,9 @@ const dataTable = [
     code: "S00910",
     date: "14/05/2024",
     time: "17:26:33",
-    tracking: "",
-    quantity: 0,
-    mass: 0,
-    totalPrice: 0,
+    quantity: 1,
+    totalPrice: 10115000,
+    deposits: 5550000,
     status: "Draft",
   },
   {
@@ -57,10 +51,9 @@ const dataTable = [
     code: "S00902",
     date: "14/05/2024",
     time: "15:43:19",
-    tracking: "AD019",
-    quantity: 0,
-    mass: 0,
-    totalPrice: 0,
+    quantity: 1,
+    totalPrice: 10115000,
+    deposits: 5550000,
     status: "Draft",
   },
   {
@@ -68,10 +61,9 @@ const dataTable = [
     code: "S00894",
     date: "13/05/2024",
     time: "14:08:12",
-    tracking: "TRACk1",
     quantity: 1,
-    mass: 0,
-    totalPrice: 3984000,
+    totalPrice: 10115000,
+    deposits: 5550000,
     status: "Sale",
   },
   {
@@ -79,10 +71,9 @@ const dataTable = [
     code: "S00892",
     date: "13/05/2024",
     time: "14:00:34",
-    tracking: "TRACK2",
     quantity: 1,
-    mass: 8,
-    totalPrice: 1593600,
+    totalPrice: 10115000,
+    deposits: 5550000,
     status: "Sale",
   },
   {
@@ -90,10 +81,9 @@ const dataTable = [
     code: "S00890",
     date: "13/05/2024",
     time: "13:58:24",
-    tracking: "TRACK1",
     quantity: 1,
-    mass: 8,
-    totalPrice: 1593600,
+    totalPrice: 10115000,
+    deposits: 5550000,
     status: "Sale",
   },
   {
@@ -101,10 +91,9 @@ const dataTable = [
     code: "S00889",
     date: "13/05/2024",
     time: "13:55:37",
-    tracking: "",
-    quantity: 0,
-    mass: 0,
-    totalPrice: 0,
+    quantity: 1,
+    totalPrice: 10115000,
+    deposits: 5550000,
     status: "Draft",
   },
   {
@@ -112,25 +101,17 @@ const dataTable = [
     code: "S00888",
     date: "13/05/2024",
     time: "13:47:19",
-    tracking: "TRACK0",
     quantity: 1,
-    mass: 10,
-    totalPrice: 1992000,
+    totalPrice: 10115000,
+    deposits: 5550000,
     status: "Sale",
   },
 ];
 
-export const DeliveryService = () => {
-  const [openModal, setOpenModal] = useState(false);
+export const OrderService = () => {
   const [openFilter, setOpenFilter] = useState(false);
   const [filterSelect, setFilterSelect] = useState("all");
   const [soft, setSoft] = useState("new");
-
-  if (openModal) {
-    document.querySelector("body").style.overflow = "hidden";
-  } else {
-    document.querySelector("body").style.overflow = "unset";
-  }
 
   const renderDataTable = () => {
     return dataTable.map((line) => {
@@ -139,32 +120,29 @@ export const DeliveryService = () => {
           key={line.stt}
           className="relative w-[1105px] xl:w-auto flex items-center py-[17.5px] bg-[#fff] rounded-[10px] hover:shadow-[1px_17px_44px_0px_rgba(3,2,41,0.07)] hover:z-10 cursor-pointer transition-all mb-[10px] pr-5"
         >
-          <td className="w-full max-w-[6.98%] text-[#030229] text-xs text-center font-normal">
+          <td className="shrink-0 w-full max-w-[76px] xl:w-full xl:max-w-[6.96%] text-[#030229] text-xs text-center font-normal">
             {line.stt}
           </td>
-          <td className="w-full max-w-[10.38%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+          <td className="shrink-0 w-full max-w-[112px] xl:w-full xl:max-w-[10.26%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
             <Link
-              to={`/order/delivery-service/${line.code}`}
+              to={`/order/order-service/${line.code}`}
               className="text-[#4285F4] hover:underline"
             >
               {line.code}
             </Link>
           </td>
-          <td className="w-full max-w-[17.17%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+          <td className="shrink-0 w-full max-w-[254px] xl:w-full xl:max-w-[23.3%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
             <img src={calendar} alt="" className="block shrink-0 w-[12.6px]" />
             {line.date}
           </td>
-          <td className="w-full max-w-[21.7%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-            {line.tracking}
-          </td>
-          <td className="w-full max-w-[10%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+          <td className="shrink-0 w-full max-w-[112px] xl:w-full xl:max-w-[10.26%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
             {line.quantity}
           </td>
-          <td className="w-full max-w-[10%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-            {line.mass}
-          </td>
-          <td className="w-full max-w-[15.85%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+          <td className="shrink-0 w-full max-w-[230px] xl:w-full xl:max-w-[21.1%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
             {line.totalPrice}
+          </td>
+          <td className="shrink-0 w-full max-w-[230px] xl:w-full xl:max-w-[21.1%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+            {line.deposits}
           </td>
           <td
             className={`flex items-center justify-center shrink-0 w-[80px] h-[35px] ${
@@ -188,9 +166,9 @@ export const DeliveryService = () => {
 
   return (
     <>
-      <h2 className="text-2xl text-[#4285F4] font-bold">Đơn hàng ký gửi</h2>
+      <h2 className="text-2xl text-[#4285F4] font-bold">Đơn hàng mua hộ</h2>
 
-      <div className="w-full flex justify-between mt-8">
+      <div className="w-full flex justify-between gap-4 mt-8">
         <GroupFuncKeys
           openFilter={openFilter}
           setOpenFilter={setOpenFilter}
@@ -199,40 +177,25 @@ export const DeliveryService = () => {
           soft={soft}
           setSoft={setSoft}
         />
-
-        <div className="flex gap-4">
-          <div className="shrink-0 relative inline-flex items-center">
-            <input
-              type="text"
-              className="shrink-0 w-[260px] h-10 p-[12px_35px_12px_16px] rounded-[10px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.10)] outline-none"
-              placeholder="Search"
-            />
-            <div className="shrink-0 w-3 h-3 absolute right-[23px]">
-              <img src={search} alt="" />
-            </div>
+        <div className="shrink-0 relative inline-flex items-center">
+          <input
+            type="text"
+            className="shrink-0 w-[260px] h-10 p-[12px_35px_12px_16px] rounded-[10px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.10)] outline-none"
+            placeholder="Search"
+          />
+          <div className="shrink-0 w-3 h-3 absolute right-[23px]">
+            <img src={search} alt="" />
           </div>
-
-          <button
-            onClick={() => setOpenModal(true)}
-            className="shink-0 w-full max-w-[122px] h-10 p-[4px_20px] flex items-center justify-center gap-[10px] bg-[#4285F4] rounded-[10px]"
-          >
-            <div className="shrink-0">
-              <img src={plus} alt="" />
-            </div>
-            <p className="text-[#fff] text-sm font-semibold leading-[18px]">
-              Tạo mới
-            </p>
-          </button>
         </div>
       </div>
 
       <table className="block xl:table w-full mt-6 overflow-x-scroll">
         <thead>
           <tr className="flex items-center py-5 pr-5">
-            <th className="w-[74px] xl:w-full xl:max-w-[6.98%] text-[#030229] text-xs font-normal">
+            <th className="shrink-0 w-full max-w-[76px] xl:w-full xl:max-w-[6.96%] text-[#030229] text-xs font-normal">
               STT
             </th>
-            <th className="w-[110px] xl:w-full xl:max-w-[10.38%] flex items-center gap-3 text-[#030229] text-xs font-normal whitespace-nowrap">
+            <th className="shrink-0 w-full max-w-[112px] xl:w-full xl:max-w-[10.26%] flex items-center gap-3 text-[#030229] text-xs font-normal whitespace-nowrap">
               Mã{" "}
               <img
                 src={arrowDown}
@@ -242,7 +205,7 @@ export const DeliveryService = () => {
                 }`}
               />
             </th>
-            <th className="w-[182px] xl:w-full xl:max-w-[17.17%] flex items-center gap-3 text-[#030229] text-xs font-normal whitespace-nowrap">
+            <th className="shrink-0 w-full max-w-[254px] xl:w-full xl:max-w-[23.3%] flex items-center gap-3 text-[#030229] text-xs font-normal whitespace-nowrap">
               Ngày đặt hàng{" "}
               <img
                 src={arrowDown}
@@ -252,8 +215,8 @@ export const DeliveryService = () => {
                 }`}
               />
             </th>
-            <th className="w-[230px] xl:w-full xl:max-w-[21.7%] flex items-center gap-3 text-[#030229] text-xs font-normal whitespace-nowrap">
-              Mã tracking{" "}
+            <th className="shrink-0 w-full max-w-[112px] xl:w-full xl:max-w-[10.26%] flex items-center gap-3 text-[#030229] text-xs font-normal whitespace-nowrap">
+              Số sản phẩm{" "}
               <img
                 src={arrowDown}
                 alt=""
@@ -262,27 +225,7 @@ export const DeliveryService = () => {
                 }`}
               />
             </th>
-            <th className="w-[110px] xl:w-full xl:max-w-[10%] flex items-center gap-3 text-[#030229] text-xs font-normal whitespace-nowrap">
-              Số gói hàng{" "}
-              <img
-                src={arrowDown}
-                alt=""
-                className={`block shrink-0 w-[7px] h-[6px] ${
-                  soft === "old" && "rotate-180"
-                }`}
-              />
-            </th>
-            <th className="w-[110px] xl:w-full xl:max-w-[10%] flex items-center gap-3 text-[#030229] text-xs font-normal whitespace-nowrap">
-              Khối lượng{" "}
-              <img
-                src={arrowDown}
-                alt=""
-                className={`block shrink-0 w-[7px] h-[6px] ${
-                  soft === "old" && "rotate-180"
-                }`}
-              />
-            </th>
-            <th className="w-[168px] xl:w-full xl:max-w-[15.85%] flex items-center gap-3 text-[#030229] text-xs font-normal whitespace-nowrap">
+            <th className="shrink-0 w-full max-w-[230px] xl:w-full xl:max-w-[21.1%] flex items-center gap-3 text-[#030229] text-xs font-normal whitespace-nowrap">
               Tổng số tiền{" "}
               <img
                 src={arrowDown}
@@ -292,7 +235,17 @@ export const DeliveryService = () => {
                 }`}
               />
             </th>
-            <th className="w-[90px] xl:w-auto flex items-center gap-3 text-[#030229] text-xs font-normal whitespace-nowrap">
+            <th className="shrink-0 w-full max-w-[230px] xl:w-full xl:max-w-[21.1%] flex items-center gap-3 text-[#030229] text-xs font-normal whitespace-nowrap">
+              Đã đặt cọc{" "}
+              <img
+                src={arrowDown}
+                alt=""
+                className={`block shrink-0 w-[7px] h-[6px] ${
+                  soft === "old" && "rotate-180"
+                }`}
+              />
+            </th>
+            <th className="shrink-0 w-auto xl:w-auto flex items-center gap-3 text-[#030229] text-xs font-normal whitespace-nowrap">
               Trạng thái{" "}
               <img
                 src={arrowDown}
@@ -307,8 +260,6 @@ export const DeliveryService = () => {
 
         <tbody>{renderDataTable()}</tbody>
       </table>
-
-      <DeliveryServiceModal openModal={openModal} setOpenModal={setOpenModal} />
     </>
   );
 };
