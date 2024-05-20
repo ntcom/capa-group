@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// import { Icons } from "../Icons/Icons";
 import logo from '../../assets/svgs/logo.svg';
 import infoIcon from '../../assets/svgs/info.svg';
 import infoIconActive from '../../assets/svgs/info-active.svg';
