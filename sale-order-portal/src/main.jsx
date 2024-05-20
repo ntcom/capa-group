@@ -10,7 +10,7 @@ import { ErrorPage } from "./pages/ErrorPage/ErrorPage.jsx";
 import { DeliveryService } from "./pages/DeliveryService/DeliveryService.jsx";
 import { DeliveryServiceDetail } from "./pages/DeliveryService/DeliveryServiceDetail.jsx";
 import { OrderService } from "./pages/OrderService/OrderService.jsx";
-import { Wallet } from "./pages/wallet/wallet.jsx";
+import { Wallet } from "./pages/Wallet/Wallet.jsx";
 
 const router = createBrowserRouter([
   {
