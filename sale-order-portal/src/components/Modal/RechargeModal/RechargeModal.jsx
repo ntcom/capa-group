@@ -70,7 +70,7 @@ export const RechargeModal = ({ openModal, setOpenModal }) => {
         <div className="mt-8 overflow-y-auto max-h-[88%] pr-[4px]">
           <div className="p-5 bg-[rgb(255,143,107,.05)]">
             <p className="text-xl text-[#FF8F6B] font-semibold">
-              Để nạp tiền vào ví, quý khách vui lòng thực hiện chuyển khoản vào
+              <span className="text-[#FF2020]">*</span> Để nạp tiền vào ví, quý khách vui lòng thực hiện chuyển khoản vào
               một trong các số tài phía dưới:
             </p>
             <p className="text-base text-[#1f1f1f] font-bold mt-3 pl-4">
