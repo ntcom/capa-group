@@ -1,8 +1,11 @@
+import { useState } from "react";
 import search from "../../assets/svgs/search.svg";
 import plus from "../../assets/svgs/plus.svg";
 import arrowDown from "../../assets/svgs/arrow-down.svg";
 import calendar from "../../assets/svgs/calendar.svg";
 import { Link } from "react-router-dom";
+import DeliveryServiceModal from "../../components/Modal/DeliveryServiceModal/DeliveryServiceModal";
+import GroupFuncKeys from "../../components/GroupFuncKeys";
 
 const dataTable = [
   {
@@ -118,41 +121,52 @@ const dataTable = [
 ];
 
 export const DeliveryService = () => {
+  const [openModal, setOpenModal] = useState(false);
+  const [openFilter, setOpenFilter] = useState(false);
+  const [filterSelect, setFilterSelect] = useState("all");
+  const [soft, setSoft] = useState("new");
+
+  if (openModal) {
+    document.querySelector("body").style.overflow = "hidden";
+  } else {
+    document.querySelector("body").style.overflow = "unset";
+  }
+
   const renderDataTable = () => {
     return dataTable.map((line) => {
       return (
         <tr
           key={line.stt}
-          className="relative flex items-center py-[17.5px] bg-[#fff] rounded-[10px] hover:shadow-[1px_17px_44px_0px_rgba(3,2,41,0.07)] hover:z-10 cursor-pointer transition-all mb-[10px] pr-5"
+          className="relative w-[1105px] xl:w-auto flex items-center py-[17.5px] bg-[#fff] rounded-[10px] hover:shadow-[1px_17px_44px_0px_rgba(3,2,41,0.07)] hover:z-10 cursor-pointer transition-all mb-[10px] pr-5"
         >
-          <th className="w-full max-w-[6.98%] text-[#030229] text-xs text-center font-normal">
+          <td className="w-full max-w-[6.98%] text-[#030229] text-xs text-center font-normal">
             {line.stt}
-          </th>
-          <th className="w-full max-w-[10.38%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+          </td>
+          <td className="w-full max-w-[10.38%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
             <Link
-              to={`/order/delivery_service/${line.code}`}
+              to={`/order/delivery-service/${line.code}`}
               className="text-[#4285F4] hover:underline"
             >
               {line.code}
             </Link>
-          </th>
-          <th className="w-full max-w-[17.17%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+          </td>
+          <td className="w-full max-w-[17.17%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
             <img src={calendar} alt="" className="block shrink-0 w-[12.6px]" />
             {line.date}
-          </th>
-          <th className="w-full max-w-[21.7%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+          </td>
+          <td className="w-full max-w-[21.7%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
             {line.tracking}
-          </th>
-          <th className="w-full max-w-[10%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+          </td>
+          <td className="w-full max-w-[10%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
             {line.quantity}
-          </th>
-          <th className="w-full max-w-[10%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+          </td>
+          <td className="w-full max-w-[10%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
             {line.mass}
-          </th>
-          <th className="w-full max-w-[15.85%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+          </td>
+          <td className="w-full max-w-[15.85%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
             {line.totalPrice}
-          </th>
-          <th
+          </td>
+          <td
             className={`flex items-center justify-center shrink-0 w-[80px] h-[35px] ${
               line.status === "Sale"
                 ? "bg-[rgba(58,151,76,0.1)]"
@@ -166,37 +180,53 @@ export const DeliveryService = () => {
             >
               {line.status}
             </p>
-          </th>
+          </td>
         </tr>
       );
     });
   };
 
   return (
-    <div>
-      <div className="w-full flex justify-end gap-4">
-        <div className="relative inline-flex items-center">
-          <input
-            type="text"
-            className="shrink-0 w-full max-w-[230px] h-10 p-[12px_35px_12px_16px] rounded-[10px] shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)] outline-none"
-            placeholder="Search"
-          />
-          <div className="shrink-0 w-3 h-3 absolute right-[23px]">
-            <img src={search} alt="" />
-          </div>
-        </div>
+    <>
+      <h2 className="text-2xl text-[#030229] font-bold">Đơn hàng ký gửi</h2>
 
-        <button className="shink-0 w-full max-w-[122px] h-10 flex items-center justify-center gap-[10px] bg-[#4285F4] rounded-[10px]">
-          <div className="shrink-0">
-            <img src={plus} alt="" />
+      <div className="w-full flex justify-between mt-8">
+        <GroupFuncKeys
+          openFilter={openFilter}
+          setOpenFilter={setOpenFilter}
+          filterSelect={filterSelect}
+          setFilterSelect={setFilterSelect}
+          soft={soft}
+          setSoft={setSoft}
+        />
+
+        <div className="flex gap-4">
+          <div className="shrink-0 relative inline-flex items-center">
+            <input
+              type="text"
+              className="shrink-0 w-[260px] h-10 p-[12px_35px_12px_16px] rounded-[10px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.10)] outline-none"
+              placeholder="Search"
+            />
+            <div className="shrink-0 w-3 h-3 absolute right-[23px]">
+              <img src={search} alt="" />
+            </div>
           </div>
-          <p className="text-[#fff] text-sm font-semibold leading-[18px]">
-            Tạo mới
-          </p>
-        </button>
+
+          <button
+            onClick={() => setOpenModal(true)}
+            className="shink-0 w-full max-w-[122px] h-10 p-[4px_20px] flex items-center justify-center gap-[10px] bg-[#4285F4] rounded-[10px]"
+          >
+            <div className="shrink-0">
+              <img src={plus} alt="" />
+            </div>
+            <p className="text-[#fff] text-sm font-semibold leading-[18px]">
+              Tạo mới
+            </p>
+          </button>
+        </div>
       </div>
 
-      <table className="block xl:table w-full mt-8 overflow-x-scroll">
+      <table className="block xl:table w-full mt-6 overflow-x-scroll">
         <thead>
           <tr className="flex items-center py-5 pr-5">
             <th className="w-[74px] xl:w-full xl:max-w-[6.98%] text-[#030229] text-xs font-normal">
@@ -207,7 +237,9 @@ export const DeliveryService = () => {
               <img
                 src={arrowDown}
                 alt=""
-                className="block shrink-0 w-[6px] h-[5px]"
+                className={`block shrink-0 w-[7px] h-[6px] ${
+                  soft === "old" && "rotate-180"
+                }`}
               />
             </th>
             <th className="w-[182px] xl:w-full xl:max-w-[17.17%] flex items-center gap-3 text-[#030229] text-xs font-normal whitespace-nowrap">
@@ -215,7 +247,9 @@ export const DeliveryService = () => {
               <img
                 src={arrowDown}
                 alt=""
-                className="block shrink-0 w-[6px] h-[5px]"
+                className={`block shrink-0 w-[7px] h-[6px] ${
+                  soft === "old" && "rotate-180"
+                }`}
               />
             </th>
             <th className="w-[230px] xl:w-full xl:max-w-[21.7%] flex items-center gap-3 text-[#030229] text-xs font-normal whitespace-nowrap">
@@ -223,7 +257,9 @@ export const DeliveryService = () => {
               <img
                 src={arrowDown}
                 alt=""
-                className="block shrink-0 w-[6px] h-[5px]"
+                className={`block shrink-0 w-[7px] h-[6px] ${
+                  soft === "old" && "rotate-180"
+                }`}
               />
             </th>
             <th className="w-[110px] xl:w-full xl:max-w-[10%] flex items-center gap-3 text-[#030229] text-xs font-normal whitespace-nowrap">
@@ -231,7 +267,9 @@ export const DeliveryService = () => {
               <img
                 src={arrowDown}
                 alt=""
-                className="block shrink-0 w-[6px] h-[5px]"
+                className={`block shrink-0 w-[7px] h-[6px] ${
+                  soft === "old" && "rotate-180"
+                }`}
               />
             </th>
             <th className="w-[110px] xl:w-full xl:max-w-[10%] flex items-center gap-3 text-[#030229] text-xs font-normal whitespace-nowrap">
@@ -239,7 +277,9 @@ export const DeliveryService = () => {
               <img
                 src={arrowDown}
                 alt=""
-                className="block shrink-0 w-[6px] h-[5px]"
+                className={`block shrink-0 w-[7px] h-[6px] ${
+                  soft === "old" && "rotate-180"
+                }`}
               />
             </th>
             <th className="w-[168px] xl:w-full xl:max-w-[15.85%] flex items-center gap-3 text-[#030229] text-xs font-normal whitespace-nowrap">
@@ -247,7 +287,9 @@ export const DeliveryService = () => {
               <img
                 src={arrowDown}
                 alt=""
-                className="block shrink-0 w-[6px] h-[5px]"
+                className={`block shrink-0 w-[7px] h-[6px] ${
+                  soft === "old" && "rotate-180"
+                }`}
               />
             </th>
             <th className="w-[90px] xl:w-auto flex items-center gap-3 text-[#030229] text-xs font-normal whitespace-nowrap">
@@ -255,7 +297,9 @@ export const DeliveryService = () => {
               <img
                 src={arrowDown}
                 alt=""
-                className="block shrink-0 w-[6px] h-[5px]"
+                className={`block shrink-0 w-[7px] h-[6px] ${
+                  soft === "old" && "rotate-180"
+                }`}
               />
             </th>
           </tr>
@@ -263,6 +307,8 @@ export const DeliveryService = () => {
 
         <tbody>{renderDataTable()}</tbody>
       </table>
-    </div>
+
+      <DeliveryServiceModal openModal={openModal} setOpenModal={setOpenModal} />
+    </>
   );
 };
