@@ -10,6 +10,7 @@ import { ErrorPage } from "./pages/ErrorPage/ErrorPage.jsx";
 import { DeliveryService } from "./pages/DeliveryService/DeliveryService.jsx";
 import { DeliveryServiceDetail } from "./pages/DeliveryService/DeliveryServiceDetail.jsx";
 import { OrderService } from "./pages/OrderService/OrderService.jsx";
+import { Wallet } from "./pages/wallet/wallet.jsx";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <Home />,
+      },
+      {
+        path: "wallet",
+        element: <Wallet />,
       },
       {
         path: "order/delivery-service",
