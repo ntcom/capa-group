@@ -25,14 +25,14 @@ const navs = [
     name: "Đổi mật khẩu",
     icon: passwordIcon,
     iconActive: passwordIconActive,
-    link: '/',
+    link: '/change-password',
   },
   {
     id: 3,
     name: "Ví",
     icon: walletIcon,
     iconActive: walletIconActive,
-    link: '/',
+    link: '/wallet',
     children: [
       {
         id: 11,
