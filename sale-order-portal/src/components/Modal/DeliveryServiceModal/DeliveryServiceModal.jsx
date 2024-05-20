@@ -117,6 +117,7 @@ const DeliveryServiceModal = ({ openModal, setOpenModal }) => {
                 <input
                   type="text"
                   id="input2"
+                  required
                   className="w-full max-w-[415px] h-[45px] bg-[#F7F7F8] rounded-[10px] p-[8px_16px] outline-none border-[1px] border-solid focus:bg-[#fff] focus:border-[#4285F4]"
                 />
               </div>
@@ -129,6 +130,7 @@ const DeliveryServiceModal = ({ openModal, setOpenModal }) => {
                 <input
                   type="text"
                   id="input3"
+                  required
                   className="w-full max-w-[415px] h-[45px] bg-[#F7F7F8] rounded-[10px] p-[8px_16px] outline-none border-[1px] border-solid focus:bg-[#fff] focus:border-[#4285F4]"
                 />
               </div>
@@ -141,6 +143,7 @@ const DeliveryServiceModal = ({ openModal, setOpenModal }) => {
                 <input
                   type="text"
                   id="input4"
+                  required
                   className="w-full max-w-[415px] h-[45px] bg-[#F7F7F8] rounded-[10px] p-[8px_16px] outline-none border-[1px] border-solid focus:bg-[#fff] focus:border-[#4285F4]"
                 />
               </div>
